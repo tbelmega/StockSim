@@ -111,6 +111,18 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+
+        <!-- JavaMoney is the reference implementation of JSR 354, which will be introduced with Java 9-->
+        <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
     </dependencies>
 
 </project>
