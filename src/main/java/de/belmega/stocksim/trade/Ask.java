@@ -2,16 +2,14 @@ package de.belmega.stocksim.trade;
 
 import org.javamoney.moneta.Money;
 
-import java.util.Optional;
-
 public class Ask extends Order{
-    private Optional<Money> lowerLimit;
+    private final Money maxPrice;
 
-    public void setLowerLimit(Money amount) {
-        this.lowerLimit = Optional.of(amount);
+    public Ask(Money maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
-    public Optional<Money> getUpperLimit() {
-        return lowerLimit;
+    public Money getMaxPrice() {
+        return maxPrice;
     }
 }

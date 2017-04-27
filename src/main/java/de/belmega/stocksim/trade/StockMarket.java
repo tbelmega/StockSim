@@ -22,22 +22,25 @@ public class StockMarket {
 
     private void executeTransactions(Order order) {
         if (order instanceof Bid)
-            for (Ask ask: this.asks.values()) {
-                Bid bid = (Bid) order;
-                if (ask.getUpperLimit().isPresent() &&
-                        ask.getUpperLimit().get().isLessThanOrEqualTo(bid.getLowerLimit().get()))
-                    execute(ask, bid, ask.getUpperLimit().get());
-            }
+            executeBid((Bid) order);
         else if (order instanceof Ask)
-            for (Bid bid: this.bids.values()) {
-                Ask ask = (Ask) order;
-                if (bid.getLowerLimit().isPresent() &&
-                        bid.getLowerLimit().get().isGreaterThanOrEqualTo(ask.getUpperLimit().get()))
-                    execute(ask, bid, bid.getLowerLimit().get());
-
-            }
+            executeAsk((Ask) order);
         else throw new NotImplementedException("Unexpected logical case.");
 
+    }
+
+    private void executeAsk(Ask ask) {
+        for (Bid bid: this.bids.values()) {
+            if (ask.getMaxPrice().isGreaterThanOrEqualTo(bid.getMinPrice()))
+                execute(ask, bid, bid.getMinPrice());
+        }
+    }
+
+    private void executeBid(Bid bid) {
+        for (Ask ask: this.asks.values()) {
+            if (ask.getMaxPrice().isGreaterThanOrEqualTo(bid.getMinPrice()))
+                execute(ask, bid, ask.getMaxPrice());
+        }
     }
 
     private void execute(Ask ask, Bid bid, Money money) {

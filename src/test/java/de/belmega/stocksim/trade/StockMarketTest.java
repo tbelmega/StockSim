@@ -21,7 +21,7 @@ public class StockMarketTest {
         StockMarket market = new StockMarket();
 
         //act
-        Order order = new Bid();
+        Order order = new Bid(null);
         market.place(order);
 
         //assert
@@ -32,7 +32,7 @@ public class StockMarketTest {
     public void testThatOrderIsCanceled() throws Exception {
         //arrange
         StockMarket market = new StockMarket();
-        Order order = new Bid();
+        Order order = new Bid(null);
         market.place(order);
 
         //act
@@ -46,38 +46,80 @@ public class StockMarketTest {
     public void testThatOrderIsCanceledWhenExpired() throws Exception {
         //arrange
         StockMarket market = new StockMarket();
-        Order order = new Bid();
+        Order order = new Bid(null);
         order.setExpiryDate(LocalDateTime.now().minusMinutes(1));
-        market.place(order);
 
         //act
+        market.place(order);
 
         //assert
         assertThat(market.getBids().size(), is(equalTo(0)));
     }
 
     @Test
-    public void testThatOrderIsExecuted() throws Exception {
+    public void testThatOrderIsExecutedAtEqualPrices() throws Exception {
         //arrange
         StockMarket market = new StockMarket();
 
-        Bid bid = new Bid();
+        Bid bid = new Bid(Money.of(10, EUR));
         bid.setNumberOfShares(100);
-        bid.setUpperLimit(Money.of(10, EUR));
-        market.place(bid);
 
-        Ask ask = new Ask();
+        Ask ask = new Ask(Money.of(10, EUR));
         ask.setNumberOfShares(100);
-        ask.setLowerLimit(Money.of(10, EUR));
-        market.place(ask);
 
         //act
+        market.place(bid);
+        market.place(ask);
 
 
         //assert
         assertThat(market.getBids().size(), is(equalTo(0)));
         assertThat(market.getAsks().size(), is(equalTo(0)));
     }
+
+    @Test
+    public void testThatOrderIsExecutedWhenAskPriceIsHigherThanBidPrice() throws Exception {
+        //arrange
+        StockMarket market = new StockMarket();
+
+        Bid bid = new Bid(Money.of(10, EUR));
+        bid.setNumberOfShares(100);
+
+        Ask ask = new Ask(Money.of(11, EUR));
+        ask.setNumberOfShares(100);
+
+        //act
+        market.place(bid);
+        market.place(ask);
+
+
+        //assert
+        assertThat(market.getBids().size(), is(equalTo(0)));
+        assertThat(market.getAsks().size(), is(equalTo(0)));
+    }
+
+    @Test
+    public void testThatOrderIsNotExecutedWhenAskPriceIsLowerThanBidPrice() throws Exception {
+        //arrange
+        StockMarket market = new StockMarket();
+
+        Bid bid = new Bid(Money.of(10, EUR));
+        bid.setNumberOfShares(100);
+
+        Ask ask = new Ask(Money.of(9, EUR));
+        ask.setNumberOfShares(100);
+
+        //act
+        market.place(bid);
+        market.place(ask);
+
+
+        //assert
+        assertThat(market.getBids().size(), is(equalTo(1)));
+        assertThat(market.getAsks().size(), is(equalTo(1)));
+    }
+
+
 
 
 
