@@ -33,8 +33,8 @@ public class ShareTransactionTest {
 
 
         //assert
-        assertThat(alice.getShares(stock), is(equalTo(0)));
-        assertThat(bob.getShares(stock), is(equalTo(150)));
+        assertThat(alice.getShares(stock), is(equalTo(0L)));
+        assertThat(bob.getShares(stock), is(equalTo(150L)));
         assertThat(alice.getBalance(), is(equalTo(Money.of(3000, EUR))));
         assertThat(bob.getBalance(), is(equalTo(Money.of(0, EUR))));
     }

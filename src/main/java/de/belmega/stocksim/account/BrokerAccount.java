@@ -15,7 +15,7 @@ public class BrokerAccount {
     public static final CurrencyUnit EUR = MonetaryCurrencies.getCurrency("EUR");
 
     private MonetaryAmount balance = Money.of(0, EUR);
-    private Map<Stock, Integer> shares = new HashMap<>();
+    private Map<Stock, Long> shares = new HashMap<>();
 
     public MonetaryAmount getBalance() {
         return balance;
@@ -36,21 +36,21 @@ public class BrokerAccount {
         }
     }
 
-    public void deposit(int amount, Stock stock) {
-        Integer currentAmount = this.shares.get(stock);
+    public void deposit(long amount, Stock stock) {
+        Long currentAmount = this.shares.get(stock);
         if (currentAmount == null) {
-            currentAmount = 0;
+            currentAmount = 0L;
         }
         this.shares.put(stock, amount + currentAmount);
     }
 
-    public int getShares(Stock stock) {
+    public long getShares(Stock stock) {
         return shares.get(stock);
     }
 
-    public boolean withdraw(int amount, Stock stock) {
-        Integer currentAmount = this.shares.get(stock);
-        int newAmount = currentAmount - amount;
+    public boolean withdraw(long amount, Stock stock) {
+        Long currentAmount = this.shares.get(stock);
+        long newAmount = currentAmount - amount;
 
         if (newAmount >= 0) {
             this.shares.put(stock, newAmount);

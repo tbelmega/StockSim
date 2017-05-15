@@ -105,7 +105,7 @@ public class BrokerAccountTest {
         account.deposit(100, stock);
 
         //assert
-        assertThat(account.getShares(stock), is(equalTo(200)));
+        assertThat(account.getShares(stock), is(equalTo(200L)));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class BrokerAccountTest {
         account.withdraw(50, stock);
 
         //assert
-        assertThat(account.getShares(stock), is(equalTo(50)));
+        assertThat(account.getShares(stock), is(equalTo(50L)));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class BrokerAccountTest {
         account.withdraw(100, stock);
 
         //assert
-        assertThat(account.getShares(stock), is(equalTo(50)));
+        assertThat(account.getShares(stock), is(equalTo(50L)));
     }
 
     @Test

@@ -13,7 +13,7 @@ public class OrderTest {
     @Test
     public void testThatOrderDoesNotExpireByDefault() throws Exception {
         //arrange
-        Order order = new Bid(null);
+        Order order = Bid.create(null, null);
 
         //act
     
@@ -24,7 +24,7 @@ public class OrderTest {
     @Test
     public void testThatOrderMayExpire() throws Exception {
         //arrange
-        Order order = new Bid(null);
+        Order order = Bid.create(null, null);
         LocalDateTime expiryDate = LocalDateTime.now();
 
         //act

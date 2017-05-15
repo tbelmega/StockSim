@@ -7,10 +7,10 @@ import javax.money.MonetaryAmount;
 
 public class StockTransfer extends Transfer {
 
-    private final int amount;
+    private final long amount;
     private final Stock stock;
 
-    public StockTransfer(BrokerAccount account, int amount, Stock stock, Type operation) {
+    public StockTransfer(BrokerAccount account, long amount, Stock stock, Type operation) {
         super(account, operation);
         this.amount = amount;
         this.stock = stock;
