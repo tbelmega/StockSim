@@ -7,21 +7,20 @@ import javax.money.CurrencyUnit;
 import javax.money.MonetaryCurrencies;
 import java.time.LocalDateTime;
 
+import static de.belmega.stocksim.account.BrokerAccount.EUR;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class StockMarketTest {
 
-    public static final CurrencyUnit EUR = MonetaryCurrencies.getCurrency("EUR");
-
     @Test
     public void testThatOrderIsPlaced() throws Exception {
         //arrange
         StockMarket market = new StockMarket();
+        Order order = new Bid(null);
 
         //act
-        Order order = new Bid(null);
         market.place(order);
 
         //assert
