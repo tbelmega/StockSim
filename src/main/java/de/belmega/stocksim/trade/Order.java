@@ -39,7 +39,7 @@ public abstract class Order extends Observable {
 
     public void setNumberOfShares(long numberOfShares) {
         if (numberOfShares >= 0) this.numberOfShares = numberOfShares;
-        else throw new IllegalArgumentException();
+        else throw new IllegalArgumentException("Number of shares must be positive, but was " + numberOfShares);
 
         setChanged();
         notifyObservers();

@@ -73,7 +73,6 @@ public class StockMarketTest {
         fooCorpMarket.place(bid);
         fooCorpMarket.place(ask);
 
-
         //assert
         assertThat(fooCorpMarket.getBids().size(), is(equalTo(0)));
         assertThat(fooCorpMarket.getAsks().size(), is(equalTo(0)));
@@ -86,14 +85,12 @@ public class StockMarketTest {
         Bid bid = Bid.create(ALICE, Money.of(10, EUR));
         bid.setNumberOfShares(100);
 
-
         Ask ask = Ask.create(BOB, Money.of(11, EUR));
         ask.setNumberOfShares(100);
 
         //act
         fooCorpMarket.place(bid);
         fooCorpMarket.place(ask);
-
 
         //assert
         assertThat(fooCorpMarket.getBids().size(), is(equalTo(0)));
@@ -115,11 +112,8 @@ public class StockMarketTest {
         fooCorpMarket.place(bid);
         fooCorpMarket.place(ask);
 
-
         //assert
         assertThat(fooCorpMarket.getBids().size(), is(equalTo(1)));
         assertThat(fooCorpMarket.getAsks().size(), is(equalTo(1)));
     }
-
-
 }

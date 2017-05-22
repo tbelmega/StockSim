@@ -70,7 +70,7 @@ public class StockMarket implements Observer {
     }
 
     private void execute(Ask ask, Bid bid, Money money) {
-        long numberOfSharesTraded = Math.max(ask.getNumberOfShares(), bid.getNumberOfShares());
+        long numberOfSharesTraded = Math.min(ask.getNumberOfShares(), bid.getNumberOfShares());
 
         ShareTransaction transaction = new ShareTransaction();
         transaction.transfer(money.multiply(numberOfSharesTraded), ask.getAccount(), bid.getAccount());

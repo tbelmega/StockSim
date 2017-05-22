@@ -13,8 +13,10 @@ public class ShareTransaction {
 
     private Set<Transfer> transfers = new HashSet<>();
     private MonetaryAmount monetaryAmount;
+    private long shareAmount;
 
     public void transfer(long amount, Stock stock, BrokerAccount from, BrokerAccount to) {
+        shareAmount = amount;
         this.transfers.add(new StockTransfer(from, amount, stock, Transfer.Type.WITHDRAW));
         this.transfers.add(new StockTransfer(to, amount, stock, Transfer.Type.DEPOSIT));
     }
@@ -33,4 +35,7 @@ public class ShareTransaction {
         return monetaryAmount;
     }
 
+    public long getShareAmount() {
+        return this.shareAmount;
+    }
 }
