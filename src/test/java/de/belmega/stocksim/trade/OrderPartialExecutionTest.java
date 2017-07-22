@@ -34,4 +34,26 @@ public class OrderPartialExecutionTest {
         long stockAmount = transaction.getShareAmount();
         assertThat(stockAmount, is(equalTo(60L)));
     }
+
+    @Test
+    public void testThatPartiallyExecutedOrderResultsInNewOrder() throws Exception {
+        //arrange
+        StockMarket fooCorpMarket = new StockMarket(FOOCORP_STOCK);
+        Bid bid = Bid.create(ALICE, Money.of(10, EUR));
+        bid.setNumberOfShares(60);
+        fooCorpMarket.place(bid);
+
+        Ask ask = Ask.create(BOB, Money.of(11, EUR));
+        ask.setNumberOfShares(100);
+
+        //act
+        fooCorpMarket.place(ask);
+
+        //assert
+        Order resultingAsk = ask.getFollowingOrder().get();
+
+        assertThat(resultingAsk.getNumberOfShares(), is(equalTo(40L)));
+    }
+
+
 }

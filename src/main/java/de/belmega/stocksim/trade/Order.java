@@ -66,4 +66,9 @@ public abstract class Order extends Observable {
         return account;
     }
 
+    public Optional<Order> getFollowingOrder() {
+        Ask value = Ask.create(null, null);
+        value.setNumberOfShares(40); //TODO
+        return Optional.of(value);
+    }
 }
