@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "corporationName": "FooCorp",
+    "highestAskPrice": 123.45,
+    "lowestBidPrice": 234.56
+  },
+  {
+    "id": "2",
+    "corporationName": "Bar Inc.",
+    "lowestBidPrice": 234.56
+  },
+  {
+    "id": "3",
+    "corporationName": "Quz-Quz",
+    "highestAskPrice": 123.45
+  }
+]
