@@ -5,7 +5,7 @@ define([
     "dgrid/OnDemandGrid",
     "stocksim/stock/StocksStore/StocksStore",
     "dstore/RequestMemory"
-], function(declare, router, _WidgetBase, OnDemandGrid, StocksStore, RequestMemory) {
+], function(declare, router, _WidgetBase, OnDemandGrid, StocksStore) {
 
     return declare([_WidgetBase], {
 
@@ -37,6 +37,7 @@ define([
         startup: function() {
 
             let grid = this.grid;
+
             grid.on(".dgrid-content .dgrid-row:dblclick", function (event) {
                 let selectedStock = grid.row(event).data;
                 router.go("/stocks/" + selectedStock.id + "/orders");

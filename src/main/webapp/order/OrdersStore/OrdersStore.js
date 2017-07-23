@@ -5,7 +5,7 @@ define([
 ], function (declare, RequestMemory, Trackable) {
 
     return declare([RequestMemory, Trackable], {
-        target: "stock/StocksStore/stocks.json"
+        target: "order/OrdersStore/orders.json"
     });
 
 });

@@ -1,5 +1,18 @@
 <div>
-    <h1 data-dojo-attach-point="headerAttachPoint">Stock Page</h1>
+    <h1 data-dojo-attach-point="titleAttachPoint">Stock Page</h1>
 
-    <div data-dojo-attach-point="gridAttachPoint"></div>
+    <h2 data-dojo-attach-point="subtitleAsksAttachPoint">Asks</h2>
+
+    <div class="small-grid"
+         data-dojo-attach-point="asksGridAttachPoint"></div>
+
+    <h2 data-dojo-attach-point="subtitleBidsAttachPoint">Bids</h2>
+
+    <div class="small-grid"
+         data-dojo-attach-point="bidsGridAttachPoint"></div>
+
+    <div>
+    <div data-dojo-type="dijit/form/Button" type="button"
+         data-dojo-attach-point="createOrderButtonAttachPoint">Create Order</div>
+    </div>
 </div>
