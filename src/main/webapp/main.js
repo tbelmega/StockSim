@@ -5,7 +5,16 @@ require([
     "stocksim/util/header/ApplicationHeader"
 ], function (dom, domConstruct, router, ApplicationHeader) {
 
-    let applicationHeader = new ApplicationHeader({}, "application-header");
+    let contextData = {
+        currentUser: {
+            name: "C.Norris",
+            id: "c.norris@gmail.com",
+            token: "123456789"
+        }
+    }
+
+    let applicationHeader = new ApplicationHeader({contextData: contextData}, "application-header");
+
     applicationHeader.startup();
 
     let currentPage;
