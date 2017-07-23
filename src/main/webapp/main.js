@@ -2,8 +2,11 @@ require([
     'dojo/dom',
     'dojo/dom-construct',
     "dojo/router",
-    "dijit/form/Button"
-], function (dom, domConstruct, router, Button) {
+    "stocksim/util/header/ApplicationHeader"
+], function (dom, domConstruct, router, ApplicationHeader) {
+
+    let applicationHeader = new ApplicationHeader({}, "application-header");
+    applicationHeader.startup();
 
     let currentPage;
 
@@ -13,7 +16,7 @@ require([
         dom.byId("main-content").innerHTML = "";
 
         // require loads the target page widget from the given location, creates page node and starts the page.
-        require([pageLocation], function(Page){
+        require([pageLocation], function (Page) {
             let pageNode = domConstruct.create("div", {}, "main-content");
             currentPage = new Page(params, pageNode);
             currentPage.startup();

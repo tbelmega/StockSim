@@ -18,6 +18,8 @@ define([
         templateString: template,
 
         startup: function () {
+            console.log(this.createOrderButtonAttachPoint);
+
             let asksGrid = new OrdersGrid({"corporationId":this.corporationId, "orderType":"ask"}, this.asksGridAttachPoint);
             asksGrid.startup();
             let bidsGrid = new OrdersGrid({"corporationId":this.corporationId, "orderType":"bid"}, this.bidsGridAttachPoint);
