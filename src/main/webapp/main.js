@@ -1,3 +1,13 @@
+var contextData = {
+    testUser: {
+        name: "C.Norris",
+        id: "c.norris@gmail.com",
+        token: "123456789"
+    },
+    currentUser: {}
+};
+
+
 require([
     'dojo/dom',
     'dojo/dom-construct',
@@ -5,17 +15,7 @@ require([
     "stocksim/util/header/ApplicationHeader"
 ], function (dom, domConstruct, router, ApplicationHeader) {
 
-    let contextData = {
-        testUser: {
-            name: "C.Norris",
-            id: "c.norris@gmail.com",
-            token: "123456789"
-        },
-        currentUser: {
-        }
-    }
-
-    let applicationHeader = new ApplicationHeader({contextData: contextData}, "application-header");
+    let applicationHeader = new ApplicationHeader({}, "application-header");
 
     applicationHeader.startup();
 
