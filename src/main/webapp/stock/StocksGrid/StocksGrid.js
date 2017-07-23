@@ -3,8 +3,9 @@ define([
     "dojo/router",
     "dijit/_WidgetBase",
     "dgrid/OnDemandGrid",
+    "stocksim/stock/StocksStore/StocksStore",
     "dstore/RequestMemory"
-], function(declare, router, _WidgetBase, OnDemandGrid, RequestMemory) {
+], function(declare, router, _WidgetBase, OnDemandGrid, StocksStore, RequestMemory) {
 
     return declare([_WidgetBase], {
 
@@ -31,9 +32,7 @@ define([
             }
         ],
 
-        store: new RequestMemory({
-            target: "resources/stocks.json"
-        }),
+        store: new StocksStore(),
 
         startup: function() {
 
