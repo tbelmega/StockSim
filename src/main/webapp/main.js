@@ -6,10 +6,12 @@ require([
 ], function (dom, domConstruct, router, ApplicationHeader) {
 
     let contextData = {
-        currentUser: {
+        testUser: {
             name: "C.Norris",
             id: "c.norris@gmail.com",
             token: "123456789"
+        },
+        currentUser: {
         }
     }
 

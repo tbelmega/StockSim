@@ -13,10 +13,13 @@ define([
 
         startup: function () {
 
-            this.userName.innerHTML = this.contextData.currentUser.name;
+            let user = this.contextData.currentUser;
+            this.userName.innerHTML = user.name;
 
             let loginButon = new Button({
-                label: this.contextData.currentUser.token ? "Logout" : "Login"
+                label: user.token ? "Logout" : "Login",
+                onclick: user.token ? this.contextData.currentUser = {} :
+                    this.contextData.currentUser = this.contextData.testUser
             }, this.loginButton)
             loginButon.startup();
 
